@@ -20,7 +20,7 @@ class NoCheatTask(
 
         private val plugin: GTAnticheat) : Task() {
 
-    override fun onRun(currentTick: Int) = GACTimings.cheatTask.execute {
+    override fun onRun(currentTick: Int){// = GACTimings.cheatTask.execute {
         val time = System.currentTimeMillis()
 
         for (p in Server.getInstance().onlinePlayers.values) {

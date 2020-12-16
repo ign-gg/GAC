@@ -8,8 +8,6 @@ import cn.nukkit.math.AxisAlignedBB
 import cn.nukkit.math.SimpleAxisAlignedBB
 import cn.nukkit.math.Vector3
 import cn.nukkit.utils.BlockIterator
-import cz.creeperface.nukkit.gac.utils.GACTimings
-import cz.creeperface.nukkit.gac.utils.execute
 import cz.creeperface.nukkit.gac.utils.mutable
 import java.util.*
 import kotlin.collections.ArrayList
@@ -18,7 +16,7 @@ import kotlin.math.*
 
 object NukerCheck {
 
-    fun run(p: Player, b: Block): Boolean = GACTimings.nukerCheck.execute {
+    fun run(p: Player, b: Block):Boolean{//: Boolean = GACTimings.nukerCheck.execute {
         val pos = p.add(0.0, p.eyeHeight.toDouble(), 0.0)
 
         var bb: AxisAlignedBB? = b.boundingBox?.mutable()

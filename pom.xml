@@ -6,15 +6,15 @@
 
     <groupId>cz.creeperface.nukkit.gac</groupId>
     <artifactId>GAC</artifactId>
-    <version>1.0</version>
+    <version>1.2-IGN</version>
 
     <properties>
         <kotlin.version>1.3.72</kotlin.version>
         <lombok.version>1.18.2</lombok.version>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
-        <jars>C:\Users\honza\.m2\repository</jars>
-        <jre.path>C:\Program Files\Java\jre1.8.0_241</jre.path>
+        <kotlin.compiler.incremental>true</kotlin.compiler.incremental>
+        <kotlin.compiler.jvmTarget>1.8</kotlin.compiler.jvmTarget>
     </properties>
 
     <repositories>
@@ -81,72 +81,23 @@
                     </annotationProcessorPaths>
                 </configuration>
             </plugin>
-            <plugin>
-                <groupId>com.github.wvengen</groupId>
-                <artifactId>proguard-maven-plugin</artifactId>
-                <version>2.2.0</version>
-                <executions>
-                    <execution>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>proguard</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <configuration>
-                    <obfuscate>true</obfuscate>
-                    <attach>true</attach>
-                    <appendClassifier>false</appendClassifier>
-                    <injar>${project.build.finalName}.jar</injar>
-                    <outjar>${project.build.finalName}-OBFUSCATED.jar</outjar>
-                    <libs>
-                        <lib>${jre.path}/lib/rt.jar</lib>
-                        <lib>${jre.path}/lib/jce.jar</lib>
-                        <lib>${jre.path}/lib/ext/sunjce_provider.jar</lib>
-                    </libs>
-                    <options>
-                        <option>-keepattributes Exceptions</option>
-                        <option>-repackageclasses cz/creeperface/nukkit/gac</option>
-                        <option>-keep class cz.creeperface.nukkit.gac.GTAnticheat</option>
-                        <option>-keep public class cz.creeperface.nukkit.gac.player.NukkitCheatPlayer {
-                            public &lt;init&gt;(...);
-                            }
-                        </option>
-                        <option>-keep public class cz.creeperface.nukkit.gac.checks.NukerCheck {
-                            public boolean run(...);
-                            }
-                        </option>
-                        <option>-keep public class cz.creeperface.nukkit.gac.player.SynapseCheatPlayer {
-                            public &lt;init&gt;(...);
-                            }
-                        </option>
-                        <option>-dontshrink</option>
-                        <option>-allowaccessmodification</option>
-                        <option>-ignorewarnings</option>
-                    </options>
-                    <exclusions>
-                        <exclusion>
-                            <groupId>org.projectlombok</groupId>
-                            <artifactId>lombok</artifactId>
-                        </exclusion>
-                    </exclusions>
-                </configuration>
-            </plugin>
         </plugins>
     </build>
 
     <dependencies>
         <dependency>
             <groupId>cn.nukkit</groupId>
-            <artifactId>nukkit</artifactId>
-            <version>1.0-SNAPSHOT</version>
-            <scope>provided</scope>
+            <artifactId>NukkitX-IGN</artifactId>
+            <version>PM1E</version>
+            <scope>system</scope>
+            <systemPath>${basedir}/lib/server.jar</systemPath>
         </dependency>
         <dependency>
             <groupId>org.itxtech.synapse</groupId>
-            <artifactId>synapse-api</artifactId>
-            <version>1.0-SNAPSHOT</version>
-            <scope>provided</scope>
+            <artifactId>SynapseAPI</artifactId>
+            <version>PM1E-X-IGN-A</version>
+            <scope>system</scope>
+            <systemPath>${basedir}/lib/SynapseAPI-PM1E-X-IGN-A.jar</systemPath>
         </dependency>
         <dependency>
             <groupId>org.jetbrains.kotlin</groupId>

@@ -6,9 +6,7 @@ import cn.nukkit.event.player.PlayerMoveEvent
 import cn.nukkit.level.Level
 import cn.nukkit.math.*
 import cz.creeperface.nukkit.gac.ACData
-import cz.creeperface.nukkit.gac.utils.GACTimings
 import cz.creeperface.nukkit.gac.utils.debug
-import cz.creeperface.nukkit.gac.utils.execute
 import cz.creeperface.nukkit.gac.utils.getBoundingBoxes
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap
 import java.util.*
@@ -23,7 +21,7 @@ object BlockCollisionCheck {
     internal val collisionCalculators: Int2ObjectOpenHashMap<(AxisAlignedBB, Block) -> Boolean>
 
 
-    fun run(e: PlayerMoveEvent, data: ACData, time: Long, checkNoClip: Boolean): Boolean = GACTimings.collisionCheck.execute {
+    fun run(e: PlayerMoveEvent, data: ACData, time: Long, checkNoClip: Boolean):Boolean{//: Boolean = GACTimings.collisionCheck.execute {
         val p = e.player
         val from = e.from
         val to = e.to

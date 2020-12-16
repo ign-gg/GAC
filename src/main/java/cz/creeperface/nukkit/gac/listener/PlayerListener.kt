@@ -116,7 +116,7 @@ class PlayerListener(private val plugin: GTAnticheat) : Listener {
             //System.out.println("revert speed");
         }
 
-        GACTimings.flyCheck.execute {
+        //GACTimings.flyCheck.execute {
             val bb = p.getBoundingBox().clone()
 
             val bb2 = bb.clone()
@@ -363,7 +363,7 @@ class PlayerListener(private val plugin: GTAnticheat) : Listener {
 
             plugin.doKickCheck(acData, p)
             cheatData.lastCheck = time
-        }
+        //}
     }
 
     @EventHandler

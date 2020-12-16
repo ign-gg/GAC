@@ -13,7 +13,6 @@ import cn.nukkit.math.NukkitMath
 import cn.nukkit.math.Vector2
 import cn.nukkit.math.Vector3
 import cn.nukkit.network.protocol.*
-import co.aikar.timings.Timings
 import cz.creeperface.nukkit.gac.ACData
 import cz.creeperface.nukkit.gac.GTAnticheat
 import cz.creeperface.nukkit.gac.checks.PacketCountCheck
@@ -78,16 +77,16 @@ class CheatPlayer(val p: Player, cheatPlayer: ICheatPlayer) : ICheatPlayer by (c
                 return
             }
 
-            Timings.getReceiveDataPacketTiming(packet).use { timing ->
+            //Timings.getReceiveDataPacketTiming(packet).use { timing ->
                 val ev = DataPacketReceiveEvent(this, packet)
                 this.server.pluginManager.callEvent(ev)
                 if (ev.isCancelled) {
-                    timing.stopTiming()
+                    //timing.stopTiming()
                     return
                 }
 
                 if (teleportPosition != null) {
-                    timing.stopTiming()
+                    //timing.stopTiming()
                     return
                 }
 
@@ -95,7 +94,7 @@ class CheatPlayer(val p: Player, cheatPlayer: ICheatPlayer) : ICheatPlayer by (c
                 var revert = false
 
                 if (newPos.distanceSquared(this) < 0.0001 && (packet.yaw % 360).toDouble() == this.yaw && (packet.pitch % 360).toDouble() == this.pitch) {
-                    timing.stopTiming()
+                    //timing.stopTiming()
                     return
                 }
 
@@ -249,7 +248,7 @@ class CheatPlayer(val p: Player, cheatPlayer: ICheatPlayer) : ICheatPlayer by (c
                         this.riding.setPositionAndRotation(this.temporalVector.setComponents(packet.x.toDouble(), (packet.y - 1.0f).toDouble(), packet.z.toDouble()), ((packet.headYaw + 90.0f) % 360.0f).toDouble(), 0.0)
                     }
                 }
-            }
+            //}
         }
     }
 
