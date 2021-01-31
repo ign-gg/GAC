@@ -120,7 +120,9 @@ class CheatPlayer(val p: Player, cheatPlayer: ICheatPlayer) : ICheatPlayer by (c
                     }
 
                     val distanceSquared = newPos.distanceSquared(this)
-                    if (this.chunk == null || !this.chunk.isGenerated) {
+                    if (distanceSquared > 400.0) {
+                        revert = true;
+                    } else if (this.chunk == null || !this.chunk.isGenerated) {
                         val newPosV2 = this.getLevel().getChunk(newPos.x.toInt() shr 4, newPos.z.toInt() shr 4, false)
                         if (newPosV2 != null && newPosV2.isGenerated) {
                             if (this.chunk != null) {
@@ -244,7 +246,7 @@ class CheatPlayer(val p: Player, cheatPlayer: ICheatPlayer) : ICheatPlayer by (c
                         }
                     }
 
-                    if (this.riding != null && this.riding is EntityBoat) {
+                    if (!revert && this.riding != null && this.riding is EntityBoat) {
                         this.riding.setPositionAndRotation(this.temporalVector.setComponents(packet.x.toDouble(), (packet.y - 1.0f).toDouble(), packet.z.toDouble()), ((packet.headYaw + 90.0f) % 360.0f).toDouble(), 0.0)
                     }
                 }
